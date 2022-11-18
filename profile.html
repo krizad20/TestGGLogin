@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <div id="g_id_onload" data-client_id="YOUR_CLIENT_ID" data-callback="handleCredentialResponse">
+    </div>
+
+    <script>
+        let cID = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjcxM2ZkNjhjOTY2ZTI5MzgwOTgxZWRjMDE2NGEyZjZjMDZjNTcwMmEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2Njg3ODQ2ODYsImF1ZCI6IjI5OTQ2ODQ5MTY2Ni1sZGE5aHA0NGs5Y2JvbHE3M21zaHM2NTVscDRxNXA0Ny5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNDIyNDM5MzcwMTkzODY4NTEzMiIsImVtYWlsIjoidmltLmludGFzb25AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImF6cCI6IjI5OTQ2ODQ5MTY2Ni1sZGE5aHA0NGs5Y2JvbHE3M21zaHM2NTVscDRxNXA0Ny5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsIm5hbWUiOiJLcmlkc2FkYSBJbnRoYXNvbiIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BTG01d3UwOGxyMzJMNzBoVXpJQ1I3TWRRaVZjX0EwZjBNQi01ZFpWc2JLUj1zOTYtYyIsImdpdmVuX25hbWUiOiJLcmlkc2FkYSIsImZhbWlseV9uYW1lIjoiSW50aGFzb24iLCJpYXQiOjE2Njg3ODQ5ODYsImV4cCI6MTY2ODc4ODU4NiwianRpIjoiMDdkMDJkNTgwMWU0ZTU4M2FhYzgxMTEyYWY2NmYzNmFiZWJhNDFlNiJ9.cr-87P7wIWIOMGEPpvMgXkiPTPuPivezIXJRpV6--t7F133sl7zJmP6ZorLGX2DO_l6y6nFYubteA1jRNO4jY_R4kDaZKYjxIbmVMVZvtacPm9-Kw73aTmVDiBhxwaTXpKXaichU94jPi9mAP9ssfx9lqIENlDT2eWv3gYTnRDK1mWQDIwwC8wo-3c3wpuUypcRfpMycbZ-lJrYWTGdbeafGR6VPpM08XpIRTNUwqSjQG7fZXrYzHnzqEE0f80S05yYe5hX1Ishk6KNjfH1RZQZNhs0JI4relFV3B0_OMsFcf2pLfZzCB-11mTwyxISmv6ZgiugF4beAXvHtZnxeyQ"
+        document.getElementById("g_id_onload").setAttribute("data-client_id", cID);
+        //get user info
+        function handleCredentialResponse(response) {
+            console.log(response);
+            if (response.credential) {
+                var credential = response.credential;
+                var id_token = credential;
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    console.log('Signed in as: ' + xhr.responseText);
+                };
+                xhr.send('idtoken=' + id_token);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
