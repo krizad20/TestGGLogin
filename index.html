@@ -8,9 +8,16 @@
     <div class="g_id_signin" data-type="standard"></div>
 
     <script>
+        window.onload = function () {
+            google.accounts.id.initialize({
+                client_id: '299468491666-lda9hp44k9cbolq73mshs655lp4q5p47.apps.googleusercontent.com',
+                callback: handleCredentialResponse
+            });
+            google.accounts.id.prompt();
+        };
         function handleCredentialResponse(response) {
             console.log(response);
-            
+
         }
         //get the credential object
     </script>
