@@ -18,6 +18,7 @@
         };
         //get user info
         function handleCredentialResponse(response) {
+            console.log(response);
             if (response.credential) {
                 var credential = response.credential;
                 var id_token = credential;
