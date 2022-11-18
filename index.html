@@ -20,7 +20,7 @@
         function handleCredentialResponse(response) {
             if (response.credential) {
                 var credential = response.credential;
-                var id_token = credential.id_token;
+                var id_token = credential;
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=' + id_token);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
