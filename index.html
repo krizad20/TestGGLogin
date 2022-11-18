@@ -7,6 +7,9 @@
     </div>
     <div class="g_id_signin" data-type="standard"></div>
 
+    <!-- logout -->
+    <div class="g_id_signout" data-type="standard"></div>
+
     <script>
         window.onload = function () {
             google.accounts.id.initialize({
@@ -17,7 +20,6 @@
         };
         function handleCredentialResponse(response) {
             console.log(response);
-
         }
         //get the credential object
     </script>
