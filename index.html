@@ -16,7 +16,22 @@
             });
             google.accounts.id.prompt();
         };
+        //get user info
         function handleCredentialResponse(response) {
+            if (response.credential) {
+                var credential = response.credential;
+                var id_token = credential.id_token;
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://localhost:3000/auth/google/callback');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function () {
+                    console.log('Signed in as: ' + xhr.responseText);
+                };
+                xhr.send('idtoken=' + id_token);
+            }
+        }
+        function handleCredentialResponse(response) {
+
             console.log(response);
         }
         //get the credential object
